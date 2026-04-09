@@ -64,12 +64,17 @@ const INITIAL_DATA: AppData = {
 };
 
 export const getStorageData = (): AppData => {
-  const data = localStorage.getItem(STORAGE_KEY);
-  if (!data) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_DATA));
+  try {
+    const data = localStorage.getItem(STORAGE_KEY);
+    if (!data) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(INITIAL_DATA));
+      return INITIAL_DATA;
+    }
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Error loading storage data:', error);
     return INITIAL_DATA;
   }
-  return JSON.parse(data);
 };
 
 export const setStorageData = (data: AppData) => {

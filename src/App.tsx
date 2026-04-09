@@ -21,12 +21,42 @@ import RouteMap from './pages/RouteMap';
 
 export default function App() {
   const [data, setData] = useState<AppData | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    setData(getStorageData());
+    try {
+      console.log('App initializing...');
+      const storageData = getStorageData();
+      console.log('Storage data loaded:', !!storageData);
+      setData(storageData);
+    } catch (err) {
+      console.error('App initialization failed:', err);
+      setError(err instanceof Error ? err.message : String(err));
+    }
   }, []);
 
-  if (!data) return null;
+  if (error) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen p-6 text-center">
+        <h1 className="text-xl font-bold text-red-600 mb-2">Something went wrong</h1>
+        <p className="text-slate-500">{error}</p>
+        <button 
+          onClick={() => window.location.reload()}
+          className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg"
+        >
+          Reload Page
+        </button>
+      </div>
+    );
+  }
+
+  if (!data) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
 
   const isAuthenticated = data.user?.isAuthenticated;
 
