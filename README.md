@@ -1,75 +1,20 @@
-# 💧 AquaSupply Supplier
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-A mobile-first web application for 20L water can suppliers to manage customers, deliveries, payments, and can inventory — all without a backend.
+# Run and deploy your AI Studio app
 
----
+This contains everything you need to run your app locally.
 
-## 🚀 Tech Stack
+View your app in AI Studio: https://ai.studio/apps/82f3f948-7ee6-496a-bb06-05a51ab6f20e
 
-- **React** (Vite)
-- **Tailwind CSS**
-- **React Router v6**
-- **LocalStorage** (no backend needed)
+## Run Locally
 
----
+**Prerequisites:**  Node.js
 
-## 📱 Features
 
-- OTP-based login with 60s resend timer
-- Customer management with search
-- Daily delivery planner with status tracking
-- Can inventory tracking (given / returned / overdue)
-- Payment & balance tracking
-- New customer request system
-- Revenue and delivery reports
-
----
-
-## 🛠️ Getting Started
-
-```bash
-# Clone the repo
-git clone https://github.com/idkdennis/Aquasupply
-cd Aquasupply
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-Open [http://localhost:5173](http://localhost:5173) in your browser.
-
----
-
-## 📁 Project Structure
-
-```
-src/
-├── components/       # Button, Card, Input, BottomNav
-├── pages/            # One file per screen (11 pages)
-└── utils/            # storage.js, validation.js, helpers.js
-```
-
----
-
-## 📦 Build for Production
-
-```bash
-npm run build
-```
-
----
-
-## 📌 Notes
-
-- All data is stored in **browser localStorage** — no server required
-- Optimized for **390px mobile width**
-- Works on Chrome, Firefox, Safari, Edge
-
----
-
-## 📄 License
-
-MIT
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`
