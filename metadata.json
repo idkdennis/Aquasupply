@@ -1,0 +1,5 @@
+{
+  "name": "AquaSupply Supplier",
+  "description": "A mobile-first water supply management application for suppliers to track deliveries, customers, and cans.",
+  "requestFramePermissions": ["camera"]
+}
