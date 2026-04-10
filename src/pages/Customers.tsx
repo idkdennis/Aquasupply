@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getStorageData } from '@/utils/storage';
+import { getStorageData } from '@/services/storage';
 import { Customer } from '@/types';
 import { Header } from '@/components/Header';
 import { Input } from '@/components/ui/input';

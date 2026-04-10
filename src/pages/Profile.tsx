@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useData } from '@/context/DataContext';
 import { Header } from '@/components/Header';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -20,20 +21,21 @@ import {
   CreditCard,
   Package
 } from 'lucide-react';
-import { getStorageData, updateUserData } from '@/utils/storage';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function Profile() {
-  const data = getStorageData();
-  const user = data.user;
+  const { data, updateUser } = useData();
+  const user = data?.user;
   const navigate = useNavigate();
   const [showNotifications, setShowNotifications] = useState(false);
   const [showSecurity, setShowSecurity] = useState(false);
 
+  if (!data) return null;
+
   const handleLogout = () => {
-    updateUserData(null);
-    window.location.href = '/welcome';
+    updateUser(null);
+    navigate('/welcome');
   };
 
   const notifications = [

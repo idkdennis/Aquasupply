@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { Droplets, ChevronLeft, ArrowRight } from 'lucide-react';
-import { updateUserData } from '@/utils/storage';
+import { updateUserData } from '@/services/storage';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function Login() {

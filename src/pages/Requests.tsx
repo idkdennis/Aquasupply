@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getStorageData, updateRequest } from '@/utils/storage';
-import { Request } from '@/types';
+import React from 'react';
+import { useData } from '@/context/DataContext';
 import { Header } from '@/components/Header';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Droplets, Check, X, Clock } from 'lucide-react';
@@ -8,19 +7,15 @@ import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'motion/react';
 
 export default function Requests() {
-  const [requests, setRequests] = useState<Request[]>([]);
+  const { data, updateRequest } = useData();
 
-  useEffect(() => {
-    const data = getStorageData();
-    setRequests(data.requests);
-  }, []);
+  if (!data) return null;
 
   const handleAction = (id: string, status: 'accepted' | 'rejected') => {
     updateRequest(id, status);
-    setRequests(requests.map(r => r.id === id ? { ...r, status } : r));
   };
 
-  const pendingRequests = requests.filter(r => r.status === 'pending');
+  const pendingRequests = data.requests.filter(r => r.status === 'pending');
 
   return (
     <div className="min-h-screen bg-slate-50 pb-24">

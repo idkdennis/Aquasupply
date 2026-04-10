@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getStorageData } from '@/utils/storage';
+import { getStorageData } from '@/services/storage';
 import { AppData } from '@/types';
 import { Header } from '@/components/Header';
 import { Card, CardContent } from '@/components/ui/card';

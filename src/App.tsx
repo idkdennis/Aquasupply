@@ -1,10 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from './components/Layout';
-import { useEffect, useState } from 'react';
-import { getStorageData } from './utils/storage';
-import { AppData } from './types';
+import { DataProvider, useData } from './context/DataContext';
 
-// Pages (to be created)
+// Pages
 import Welcome from './pages/Welcome';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -19,21 +17,8 @@ import Reports from './pages/Reports';
 import Profile from './pages/Profile';
 import RouteMap from './pages/RouteMap';
 
-export default function App() {
-  const [data, setData] = useState<AppData | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    try {
-      console.log('App initializing...');
-      const storageData = getStorageData();
-      console.log('Storage data loaded:', !!storageData);
-      setData(storageData);
-    } catch (err) {
-      console.error('App initialization failed:', err);
-      setError(err instanceof Error ? err.message : String(err));
-    }
-  }, []);
+function AppContent() {
+  const { data, loading, error } = useData();
 
   if (error) {
     return (
@@ -50,7 +35,7 @@ export default function App() {
     );
   }
 
-  if (!data) {
+  if (loading || !data) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -81,5 +66,13 @@ export default function App() {
         </Routes>
       </Layout>
     </Router>
+  );
+}
+
+export default function App() {
+  return (
+    <DataProvider>
+      <AppContent />
+    </DataProvider>
   );
 }

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getStorageData } from '@/utils/storage';
-import { AppData } from '@/types';
+import { useData } from '@/context/DataContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { 
@@ -17,12 +16,8 @@ import {
 import { motion } from 'motion/react';
 
 export default function Dashboard() {
-  const [data, setData] = useState<AppData | null>(null);
+  const { data, triggerRandomRequest } = useData();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    setData(getStorageData());
-  }, []);
 
   if (!data) return null;
 
@@ -138,6 +133,18 @@ export default function Dashboard() {
             </div>
           )}
         </div>
+      </div>
+      
+      {/* Dev Tool - Prototype Only */}
+      <div className="mt-8 pt-8 border-t border-slate-100">
+        <Button 
+          variant="outline" 
+          size="sm" 
+          onClick={triggerRandomRequest}
+          className="w-full text-slate-400 border-dashed"
+        >
+          Dev: Generate Random Request
+        </Button>
       </div>
     </div>
   );

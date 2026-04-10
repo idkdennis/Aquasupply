@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent } from '@/components/ui/card';
 import { MapPin, Navigation, ChevronLeft, ArrowRight } from 'lucide-react';
-import { updateUserData } from '@/utils/storage';
+import { updateUserData } from '@/services/storage';
 
 export default function Register() {
   const [formData, setFormData] = useState({

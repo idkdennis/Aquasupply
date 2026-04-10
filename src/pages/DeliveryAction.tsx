@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getStorageData, updateDelivery } from '@/utils/storage';
+import { getStorageData, updateDelivery } from '@/services/storage';
 import { Delivery } from '@/types';
 import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
